@@ -1865,7 +1865,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_THT:C_Radial_D10.0mm_H20.0mm_P5.00mm"
 			(at 38.1 100.33 0)
 			(hide yes)
 			(show_name no)
@@ -1925,7 +1925,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "610a443f-d2ed-4208-bc1f-13fc11182fa2")
-		(property "Reference" "#PWR04"
+		(property "Reference" "#PWR02"
 			(at 74.93 113.03 0)
 			(hide yes)
 			(show_name no)
@@ -1985,7 +1985,7 @@
 		(instances
 			(project "wacky-waver"
 				(path "/0fb331f2-2851-4e78-9031-6723af8f3488"
-					(reference "#PWR04")
+					(reference "#PWR02")
 					(unit 1)
 				)
 			)
@@ -2003,7 +2003,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "671bc8b4-79de-455f-b1bc-b203a149eb0e")
-		(property "Reference" "#PWR01"
+		(property "Reference" "#PWR04"
 			(at 198.12 68.58 0)
 			(hide yes)
 			(show_name no)
@@ -2063,7 +2063,7 @@
 		(instances
 			(project "wacky-waver"
 				(path "/0fb331f2-2851-4e78-9031-6723af8f3488"
-					(reference "#PWR01")
+					(reference "#PWR04")
 					(unit 1)
 				)
 			)
@@ -2181,7 +2181,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_JST:JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical"
 			(at 80.01 91.44 0)
 			(hide yes)
 			(show_name no)
@@ -2241,7 +2241,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "84a74445-4a04-41b5-891f-54db05bd2d52")
-		(property "Reference" "#PWR02"
+		(property "Reference" "#PWR05"
 			(at 198.12 132.08 0)
 			(hide yes)
 			(show_name no)
@@ -2301,7 +2301,7 @@
 		(instances
 			(project "wacky-waver"
 				(path "/0fb331f2-2851-4e78-9031-6723af8f3488"
-					(reference "#PWR02")
+					(reference "#PWR05")
 					(unit 1)
 				)
 			)
@@ -2407,7 +2407,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f136f6e6-8ef4-407a-89d4-398e2f98a98d")
-		(property "Reference" "#PWR05"
+		(property "Reference" "#PWR01"
 			(at 74.93 90.17 0)
 			(hide yes)
 			(show_name no)
@@ -2467,7 +2467,7 @@
 		(instances
 			(project "wacky-waver"
 				(path "/0fb331f2-2851-4e78-9031-6723af8f3488"
-					(reference "#PWR05")
+					(reference "#PWR01")
 					(unit 1)
 				)
 			)
@@ -2505,7 +2505,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Seeed_Studio_XIAO_Series:XIAO-ESP32-C5-SMD"
+		(property "Footprint" "SEEED Xiao:XIAO-ESP32-C5-SMD"
 			(at 157.48 91.44 0)
 			(hide yes)
 			(show_name no)
