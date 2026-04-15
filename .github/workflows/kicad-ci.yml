@@ -1,0 +1,93 @@
+name: KiCad CI
+
+on:
+  push:
+    branches: [main]
+    tags:
+      - 'v*'
+  pull_request:
+
+jobs:
+  erc-drc:
+    name: ERC & DRC
+    runs-on: ubuntu-latest
+    container:
+      image: kicad/kicad:10.0
+      options: --user root
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run ERC
+        run: |
+          kicad-cli sch erc \
+            --output erc-report.txt \
+            wacky-waver.kicad_sch
+
+      - name: Run DRC
+        run: |
+          kicad-cli pcb drc \
+            --output drc-report.txt \
+            --schematic-parity \
+            wacky-waver.kicad_pcb
+
+      - name: Upload reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: erc-drc-reports
+          path: |
+            erc-report.txt
+            drc-report.txt
+
+  release:
+    name: Export & Release
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: erc-drc
+    runs-on: ubuntu-latest
+    container:
+      image: kicad/kicad:10.0
+      options: --user root
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Export gerbers
+        run: |
+          mkdir -p gerbers
+          kicad-cli pcb export gerbers \
+            --output gerbers/ \
+            wacky-waver.kicad_pcb
+
+      - name: Export drill files
+        run: |
+          kicad-cli pcb export drill \
+            --output gerbers/ \
+            wacky-waver.kicad_pcb
+
+      - name: Export BOM
+        run: |
+          kicad-cli sch export bom \
+            --output wacky-waver-bom.csv \
+            wacky-waver.kicad_sch
+
+      - name: Export schematic PDF
+        run: |
+          kicad-cli sch export pdf \
+            --output wacky-waver-schematic.pdf \
+            wacky-waver.kicad_sch
+
+      - name: Zip gerbers
+        run: |
+          cd gerbers && zip -r ../wacky-waver-gerbers-${{ github.ref_name }}.zip .
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            wacky-waver-gerbers-${{ github.ref_name }}.zip
+            wacky-waver-bom.csv
+            wacky-waver-schematic.pdf
+          generate_release_notes: true
